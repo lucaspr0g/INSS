@@ -1,4 +1,4 @@
-﻿namespace INSS.Dominio.Entidades
+﻿namespace Dominio.Entidades
 {
     public class ConfiguracaoDescontoInss
     {

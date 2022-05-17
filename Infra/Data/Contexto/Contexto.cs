@@ -1,32 +1,11 @@
-﻿using INSS.Aplicacao.Interfaces;
-using INSS.Dominio.Entidades;
+﻿using Dominio.Entidades;
 using System.Collections.Generic;
-using System.Linq;
 
-namespace INSS.Infra
+namespace Infra.Data.Contexto
 {
-    public class Contexto : IContexto
+    internal static class Contexto
     {
-        private List<ConfiguracaoDescontoInss> ConfiguracoesDescontoInss => InicializarDados();
-
-        public ConfiguracaoDescontoInss ObterConfiguracaoDescontoInss(int ano, decimal salario)
-        {
-            return ConfiguracoesDescontoInss
-                .Where(s => s.Ano == ano && s.SalarioMinimo <= salario && s.SalarioMaximo >= salario && !s.Teto)
-                .FirstOrDefault();
-        }
-
-        public bool PeriodoConfigurado(int ano)
-        {
-            return ConfiguracoesDescontoInss.Any(s => s.Ano == ano);
-        }
-
-        public decimal ObterDescontoDoSalarioTeto(int ano)
-        {
-            return ConfiguracoesDescontoInss
-                .FirstOrDefault(s => s.Ano == ano && s.Teto)
-                .Aliquota;
-        }
+        internal static List<ConfiguracaoDescontoInss> ConfiguracoesDescontoInss => InicializarDados();
 
         private static List<ConfiguracaoDescontoInss> InicializarDados()
         {

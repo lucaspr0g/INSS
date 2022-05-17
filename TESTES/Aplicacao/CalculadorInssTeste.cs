@@ -1,15 +1,16 @@
-﻿using INSS.Aplicacao;
-using INSS.Aplicacao.Interfaces;
-using INSS.Infra;
+﻿using Aplicacao;
+using Aplicacao.Interfaces;
+using Infra.Data.Repositorios;
+using Infra.Interfaces;
 using System;
 using Xunit;
 
-namespace TESTES.Aplicacao
+namespace Testes.Aplicacao
 {
     public class CalculadorInssTeste
     {
-        private readonly IContexto _contexto;
         private readonly ICalculadorInss _calculadorInss;
+        private readonly IConfiguracaoDescontoInssRepositorio _repositorio;
 
         private static DateTime Data2011 => new DateTime(2011, 01, 01);
         private static DateTime Data2012 => new DateTime(2012, 01, 01);
@@ -29,8 +30,8 @@ namespace TESTES.Aplicacao
         
         public CalculadorInssTeste()
         {
-            _contexto = new Contexto();
-            _calculadorInss = new CalculadorInss(_contexto);
+            _repositorio = new ConfiguracaoDescontoInssRepositorio();
+            _calculadorInss = new CalculadorInss(_repositorio);
         }
 
         [Theory, MemberData(nameof(Dados))]

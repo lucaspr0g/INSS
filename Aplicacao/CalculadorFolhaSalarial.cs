@@ -1,17 +1,18 @@
-﻿using INSS.Aplicacao.Interfaces;
-using INSS.Infra;
+﻿using Aplicacao.Interfaces;
+using Infra.Data.Repositorios;
+using Infra.Interfaces;
 using System;
 using System.Globalization;
 
-namespace INSS.Aplicacao
+namespace Aplicacao
 {
     public class CalculadorFolhaSalarial : ICalculadorFolhaSalarial
     {
-        private readonly IContexto _contexto;
+        private readonly IConfiguracaoDescontoInssRepositorio _respositorio;
 
         public CalculadorFolhaSalarial()
         {
-            _contexto = new Contexto();
+            _respositorio = new ConfiguracaoDescontoInssRepositorio();
         }
 
         public void CalcularFolhaSalarial()
@@ -21,7 +22,7 @@ namespace INSS.Aplicacao
 
             Validar(data, salario);
 
-            var calculadorInss = new CalculadorInss(_contexto);
+            var calculadorInss = new CalculadorInss(_respositorio);
 
             var desconto = calculadorInss.CalcularDesconto(data, salario);
 
@@ -30,7 +31,7 @@ namespace INSS.Aplicacao
 
         private void Validar(DateTime data, decimal salario)
         {
-            var periodoConfigurado = _contexto.PeriodoConfigurado(data.Year);
+            var periodoConfigurado = _respositorio.PeriodoConfigurado(data.Year);
 
             if (!periodoConfigurado)
                 throw new Exception("Período não configurado.");

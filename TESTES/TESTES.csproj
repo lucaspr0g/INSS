@@ -61,9 +61,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\INSS\INSS.csproj">
-      <Project>{68f7e0f8-788f-430a-9b09-39624aa436a2}</Project>
-      <Name>INSS</Name>
+    <ProjectReference Include="..\Aplicacao\Aplicacao.csproj">
+      <Project>{25096C66-19CE-47EA-A27D-4D3A05D445A0}</Project>
+      <Name>Aplicacao</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infra\Infra.csproj">
+      <Project>{D68EEFCC-B36E-4011-ABE0-4AE45B79682B}</Project>
+      <Name>Infra</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

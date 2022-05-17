@@ -1,4 +1,4 @@
-﻿namespace INSS.Aplicacao.Interfaces
+﻿namespace Aplicacao.Interfaces
 {
     public interface ICalculadorFolhaSalarial
     {

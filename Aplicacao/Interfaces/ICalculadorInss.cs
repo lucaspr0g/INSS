@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace INSS.Aplicacao.Interfaces
+namespace Aplicacao.Interfaces
 {
     public interface ICalculadorInss
     {
